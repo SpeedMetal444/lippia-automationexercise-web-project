@@ -2,13 +2,13 @@
 
 This project contains automated web tests built using the Lippia framework (Cucumber + TestNG) targeting the Automation Exercise website.
 
-## 🚀 Project Overview
+## Project Overview
 
 The purpose of this project is to simulate real-world QA automation practices by covering end-to-end (E2E) user flows, including both positive and negative scenarios.
 
 Tested application: https://automationexercise.com/
 
-## 🧪 Test Coverage
+## Test Coverage
 
 The automation suite includes the following scenarios:
 
@@ -19,7 +19,7 @@ The automation suite includes the following scenarios:
 - Checkout process (E2E)
 - UI validations and negative cases
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - Java
 - Lippia Framework
@@ -28,7 +28,7 @@ The automation suite includes the following scenarios:
 - Maven
 - Selenium WebDriver
 
-## 📁 Project Structure
+## Project Structure
 
     src
      ├── main
@@ -44,7 +44,7 @@ The automation suite includes the following scenarios:
              ├── capabilities
              └── config.properties
 
-## ▶️ How to Run Tests
+## How to Run Tests
 
 Run all tests:
 
@@ -54,21 +54,21 @@ Run tests by tag:
 
     mvn clean test -Dcucumber.filter.tags="@Smoke"
 
-## 📌 Key Focus
+## Key Focus
 
 - Stable and maintainable test design
 - Realistic end-to-end scenarios
 - Handling dynamic web elements and synchronization
 - Clean and scalable automation structure
 
-## 📈 Future Improvements
+## Future Improvements
 
 - CI/CD integration (GitHub Actions)
 - Improved test reporting
 - Data-driven testing
 - Cross-browser execution
 
-## 👤 Author
+## Author
 
 Abel Godoy  
 QA Automation Tester
