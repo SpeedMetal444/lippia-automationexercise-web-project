@@ -1,4 +1,4 @@
-package lippia.web.reporters;
+package com.automationexercise.reporters;
 
 import com.crowdar.driver.DriverManager;
 
