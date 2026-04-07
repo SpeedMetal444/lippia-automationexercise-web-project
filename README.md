@@ -1,23 +1,12 @@
 # Lippia Web Automation – Automation Exercise
 
-This project contains automated web tests built using the Lippia framework (Cucumber + TestNG) targeting the Automation Exercise website.
+This project contains automated web tests built using the Lippamente framework (Cucumber + TestNG) targeting the Automation Exercise website.
 
 ## Project Overview
 
 The purpose of this project is to simulate real-world QA automation practices by covering end-to-end (E2E) user flows, including both positive and negative scenarios.
 
 Tested application: https://automationexercise.com/
-
-## Test Coverage
-
-The automation suite includes the following scenarios:
-
-- User login (valid and invalid credentials)
-- User registration
-- Product browsing and selection
-- Add and remove products from cart
-- Checkout process (E2E)
-- UI validations and negative cases
 
 ## Tech Stack
 
@@ -32,17 +21,21 @@ The automation suite includes the following scenarios:
 
     src
      ├── main
-     │   └── java
-     │       └── (framework core / configuration)
+     │   ├── java
+     │   │   └── lippia
+     │   │       └── web
+     │   │           ├── constants/    (Project constants)
+     │   │           ├── services/     (Page objects / Services)
+     │   │           ├── steps/        (Cucumber step definitions)
+     │   │           └── reporters/    (Custom reporters)
+     │   └── resources
+     │       ├── browsers/             (Browser capabilities)
+     │       └── (config/properties)
      │
      └── test
-         ├── java
-         │   └── steps / services / constants
-         │
          └── resources
-             ├── features
-             ├── capabilities
-             └── config.properties
+             └── web
+                 └── features/        (Gherkin .feature files)
 
 ## How to Run Tests
 
@@ -57,9 +50,8 @@ Run tests by tag:
 ## Key Focus
 
 - Stable and maintainable test design
-- Realistic end-to-end scenarios
-- Handling dynamic web elements and synchronization
-- Clean and scalable automation structure
+- Scalable automation structure
+- Clean and reusable code
 
 ## Future Improvements
 
