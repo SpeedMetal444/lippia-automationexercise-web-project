@@ -72,6 +72,7 @@ target/
 .settings
 .classpath
 .project
+.factorypath
 /.metadata/
 
 # Jenkins

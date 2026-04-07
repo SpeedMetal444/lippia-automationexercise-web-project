@@ -3,8 +3,8 @@ Feature: Test Cases - Verify Test Cases Page
 
   Background:
     Given The user launches the browser
-    When The user navigates to url "http://automationexercise.com"
-    Then The user verifies that home page is visible successfully
+    And The user navigates to url "http://automationexercise.com"
+    And The user verifies that home page is visible successfully
 
   @VerifyTestCasesPage @Candidate
   Scenario: User can navigate to Test Cases page
