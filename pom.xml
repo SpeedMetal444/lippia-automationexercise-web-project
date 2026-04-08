@@ -7,10 +7,10 @@
 		<version>3.3.0.3</version>
 	</parent>
 
-	<groupId>Lippia-Web-Example-Project</groupId>
-	<artifactId>LippiaWebExampleProject</artifactId>
+	<groupId>com.automationexercise</groupId>
+	<artifactId>automationexercise-web-automation</artifactId>
 	<version>1.0.0</version>
-	<name>crowdar_automation_web</name>
+	<name>automationexercise-web-automation</name>
 
 	<packaging>jar</packaging>
 
@@ -26,17 +26,17 @@
 		<runner></runner>
 
 		<!-- cucumber options -->
-		<cucumber.stepsDefinitions>--glue / </cucumber.stepsDefinitions>
+		<cucumber.stepsDefinitions>--glue com.automationexercise.steps</cucumber.stepsDefinitions>
 		<cucumber.hooks>--glue	com/crowdar/bdd/cukes/hooks</cucumber.hooks>
 		<cucumber.tags>@Smoke</cucumber.tags>
 		<pretty.plugin>--plugin pretty</pretty.plugin>
-		<crowdar.cucumber.plugins>--plugin pretty --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter: --plugin com.crowdar.examples.listeners.CucumberListener:</crowdar.cucumber.plugins>
+		<crowdar.cucumber.plugins>--plugin pretty --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:</crowdar.cucumber.plugins>
 		<crowdar.extent.host.name>LocalMachine</crowdar.extent.host.name>
 		<crowdar.extent.environment>Local</crowdar.extent.environment>
 		<crowdar.extent.user.name>User.name</crowdar.extent.user.name>
-		<cucumber.report>--plugin lippia.web.reporters.CucumberReporter:</cucumber.report>
-		<test-manager.report>--plugin lippia.web.reporters.TestManagerReporter:</test-manager.report>
-		<crowdar.cucumber.option>src/test/resources/web/features ${cucumber.hooks} ${cucumber.stepsDefinitions} --tags 'not @Ignore' --tags ${cucumber.tags} ${cucumber.report}</crowdar.cucumber.option>
+		<cucumber.report>--plugin com.automationexercise.reporters.CucumberReporter:</cucumber.report>
+		<test-manager.report>--plugin com.automationexercise.reporters.TestManagerReporter:</test-manager.report>
+		<crowdar.cucumber.option>src/test/resources/web/features ${cucumber.hooks} ${cucumber.stepsDefinitions} --tags 'not @Ignore' --tags ${cucumber.tags} ${cucumber.report} ${test-manager.report}</crowdar.cucumber.option>
 
 		<!-- client project custom properties -->
 		<web-app.url>https://automationexercise.com/</web-app.url>
@@ -45,7 +45,7 @@
 	<profiles>
 
 		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-		<!--    Profiles related to Browser requirementes    -->
+		<!--   Profiles related to browser requirements      -->
 		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 		<profile>
@@ -76,7 +76,7 @@
 		</profile>
 
 		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-		<!--   Profiles related to Driver Instance petition   -->
+		<!--   Profiles related to driver setup strategy      -->
 		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 		<profile>
@@ -99,23 +99,30 @@
 		</profile>
 
 		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-		<!--   Profiles related to Runners ejecutions         -->
+		<!--   Profiles related to runners execution          -->
 		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 		<profile>
-			<id>secuencial</id>
+			<id>sequential</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<runner>testngSecuencial.xml</runner>
+				<runner>testng-sequential.xml</runner>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>secuencial</id>
+			<properties>
+				<runner>testng-sequential.xml</runner>
 			</properties>
 		</profile>
 
 		<profile>
 			<id>parallel</id>
 			<properties>
-				<runner>testngParallel.xml</runner>
+				<runner>testng-parallel.xml</runner>
 			</properties>
 		</profile>
 	</profiles>

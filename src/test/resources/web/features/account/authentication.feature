@@ -2,8 +2,7 @@
 Feature: Authentication - Register, Login and Logout
 
   Background:
-    Given The user launches the browser
-    And The user navigates to url "http://automationexercise.com"
+    Given The user navigates to url "http://automationexercise.com"
     And The user verifies that home page is visible successfully
     And The user clicks on "Signup / Login" button
 

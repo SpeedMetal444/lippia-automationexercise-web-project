@@ -2,8 +2,7 @@
 Feature: Home - Subscription, Recommended Items and Scroll
 
   Background:
-    Given The user launches the browser
-    And The user navigates to url "http://automationexercise.com"
+    Given The user navigates to url "http://automationexercise.com"
     And The user verifies that home page is visible successfully
 
   @SubscriptionHomePage @Candidate

@@ -1,74 +1,124 @@
-# Lippia Web Automation – Automation Exercise
+# AutomationExercise Web Automation
 
-This project contains automated web tests built using the Lippia framework (Cucumber + TestNG) targeting the Automation Exercise website.
-
-## Project Overview
-
-The purpose of this project is to simulate real-world QA automation practices by covering end-to-end (E2E) user flows, including both positive and negative scenarios.
-
-Tested application: https://automationexercise.com/
-
-## Test Coverage
-
-The automation suite includes the following scenarios:
-
-- User login (valid and invalid credentials)
-- User registration
-- Product browsing and selection
-- Add and remove products from cart
-- Checkout process (E2E)
-- UI validations and negative cases
+This project contains web UI automated tests for [AutomationExercise](https://automationexercise.com/) using Lippia, Cucumber, TestNG, and Selenium.
 
 ## Tech Stack
 
 - Java
+- Maven
 - Lippia Framework
 - Cucumber (BDD)
 - TestNG
-- Maven
 - Selenium WebDriver
+- Extent Reports
 
 ## Project Structure
 
-    src
-     ├── main
-     │   └── java
-     │       └── (framework core / configuration)
-     │
-     └── test
-         ├── java
-         │   └── steps / services / constants
-         │
-         └── resources
-             ├── features
-             ├── capabilities
-             └── config.properties
+```tree
+.
+|-- pom.xml
+|-- testng.xml
+|-- testng-sequential.xml
+|-- testng-parallel.xml
+`-- src
+    |-- main
+    |   |-- java
+    |   |   `-- com
+    |   |       `-- automationexercise
+    |   |           `-- reporters
+    |   |               |-- CucumberReporter.java
+    |   |               `-- TestManagerReporter.java
+    |   `-- resources
+    |       |-- browsers
+    |       |   |-- chromeCapabilities.json
+    |       |   |-- chromeCapabilitiesGrid.json
+    |       |   `-- firefoxCapabilities.json
+    |       |-- config.properties
+    |       |-- cucumber.properties
+    |       |-- extent.properties
+    |       |-- log4j.properties
+    |       `-- webdrivermanager.properties
+    `-- test
+        |-- java
+        |   `-- com
+        |       `-- automationexercise
+        |           |-- constants
+        |           |   |-- account
+        |           |   |-- common
+        |           |   |-- content
+        |           |   |-- navigation
+        |           |   |-- shopping
+        |           |   `-- support
+        |           |-- services
+        |           |   |-- account
+        |           |   |-- common
+        |           |   |-- content
+        |           |   |-- navigation
+        |           |   |-- shopping
+        |           |   `-- support
+        |           `-- steps
+        |               |-- account
+        |               |-- common
+        |               |-- content
+        |               |-- navigation
+        |               |-- shopping
+        |               `-- support
+        `-- resources
+            `-- web
+                `-- features
+                    |-- account
+                    |-- content
+                    |-- navigation
+                    |-- shopping
+                    `-- support
+```
 
-## How to Run Tests
+## Run Tests
 
-Run all tests:
+Default run:
 
-    mvn clean test
+```bash
+mvn clean test
+```
 
-Run tests by tag:
+Useful executions:
 
-    mvn clean test -Dcucumber.filter.tags="@Smoke"
+```bash
+# Chrome local, sequential (default profile)
+mvn clean test -Pchrome,local,sequential
 
-## Key Focus
+# Firefox local, sequential
+mvn clean test -Pfirefox,local,sequential
 
-- Stable and maintainable test design
-- Realistic end-to-end scenarios
-- Handling dynamic web elements and synchronization
-- Clean and scalable automation structure
+# Chrome headless, sequential
+mvn clean test -PchromeHeadless,local,sequential
 
-## Future Improvements
+# Parallel run
+mvn clean test -Pchrome,local,parallel
 
-- CI/CD integration (GitHub Actions)
-- Improved test reporting
-- Data-driven testing
-- Cross-browser execution
+# Run by tags
+mvn clean test -Dcucumber.tags="@Smoke"
+```
 
-## Author
+## Main Configuration Points
 
-Abel Godoy  
-QA Automation Tester
+- Base URL: `src/main/resources/config.properties`
+- Browser capabilities: `src/main/resources/browsers/`
+- Cucumber options: `src/main/resources/cucumber.properties`
+- Steps glue package: configured in `pom.xml` as `com.automationexercise.steps`
+
+## Functional Coverage
+
+- Authentication
+- Home
+- Products
+- Cart
+- Checkout
+- Contact
+- Test Cases
+
+## Notes
+
+- Features are organized by functional domain.
+- Steps, services, and constants are also organized by domain to keep the suite scalable.
+- Custom reporters are under `src/main/java/com/automationexercise/reporters/`.

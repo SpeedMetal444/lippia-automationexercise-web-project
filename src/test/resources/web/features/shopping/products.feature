@@ -2,8 +2,7 @@
 Feature: Products - Browse, Search, Categories, Brands and Reviews
 
   Background:
-    Given The user launches the browser
-    And The user navigates to url "http://automationexercise.com"
+    Given The user navigates to url "http://automationexercise.com"
     And The user verifies that home page is visible successfully
 
   @VerifyAllProductsAndDetails @Candidate @Smoke
