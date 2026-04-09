@@ -1,6 +1,7 @@
 package com.automationexercise.services.account;
 
 import com.automationexercise.constants.account.AuthenticationConstants;
+import com.automationexercise.services.common.CommonService;
 import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.driver.DriverManager;
@@ -41,7 +42,7 @@ public class AuthenticationService {
     }
 
     private static void fillCredentials() {
-        ActionManager.setInput(AuthenticationConstants.NAME_INPUT, DEFAULT_NAME);
+        CommonService.clearAndType(AuthenticationConstants.NAME_INPUT, DEFAULT_NAME);
         ActionManager.setInput(AuthenticationConstants.PASSWORD_INPUT, requiredProperty("login-password"));
     }
 

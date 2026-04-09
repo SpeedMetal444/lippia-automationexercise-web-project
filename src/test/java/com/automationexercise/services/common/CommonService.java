@@ -8,12 +8,20 @@ import com.crowdar.core.actions.ActionManager;
 import com.crowdar.driver.DriverManager;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CommonService {
+
+    public static void clearAndType(String locator, String value) {
+        WebElement input = ActionManager.getElement(locator);
+        input.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        input.sendKeys(Keys.BACK_SPACE);
+        ActionManager.setInput(locator, value);
+    }
 
     public static void verifyTextVisibility(String text) {
         String resolvedText = resolvePlaceholders(text);

@@ -6,7 +6,7 @@ Feature: Authentication - Register, Login and Logout
     And The user verifies that home page is visible successfully
     And The user clicks on "Signup / Login" button
 
-  @RegisterUser @Automated @Smoke @E2E @test
+  @RegisterUser @Automated @Smoke @E2E
   Scenario: Register a new user successfully
     When The user verifies that "New User Signup!" is visible
     And The user enters name and email address
@@ -23,7 +23,7 @@ Feature: Authentication - Register, Login and Logout
     And The user clicks "Delete Account" button
     Then The user verifies that "ACCOUNT DELETED!" is visible and clicks "Continue" button
 
-  @LoginCorrectCredentials @Candidate @Smoke
+  @LoginCorrectCredentials @Candidate @Smoke @test
   Scenario: Login with correct credentials successfully
     When The user verifies that "Login to your account" is visible
     And The user enters correct email address and password
