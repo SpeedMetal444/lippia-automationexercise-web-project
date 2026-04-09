@@ -1,5 +1,8 @@
 package com.automationexercise.steps.common;
 
+import com.automationexercise.services.common.CommonService;
+import com.automationexercise.services.common.NavigationService;
+import com.automationexercise.services.content.HomeService;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -9,30 +12,27 @@ public class CommonSteps {
 
     @Given("^The user navigates to url \"([^\"]*)\"$")
     public void theUserNavigatesToUrl(String url) {
-        throw new PendingException();
+        NavigationService.navigatesToUrl(url);
     }
 
     @Given("^The user verifies that home page is visible successfully$")
     public void theUserVerifiesThatHomePageIsVisibleSuccessfully() {
-        throw new PendingException();
+        HomeService.isHomeLoaded();
     }
 
-    @Given("^The user clicks on \"([^\"]*)\" button$")
     @When("^The user clicks on \"([^\"]*)\" button$")
     public void theUserClicksOnButton(String buttonName) {
-        throw new PendingException();
+        HomeService.clickNavbarButton(buttonName);
     }
 
-    @Given("^The user clicks \"([^\"]*)\" button$")
     @When("^The user clicks \"([^\"]*)\" button$")
     public void theUserClicksButton(String buttonName) {
-        throw new PendingException();
+        CommonService.clickButtonByName(buttonName);
     }
 
-    @When("^The user verifies that \"([^\"]*)\" is visible$")
     @Then("^The user verifies that \"([^\"]*)\" is visible$")
     public void theUserVerifiesThatIsVisible(String text) {
-        throw new PendingException();
+        CommonService.verifyTextVisibility(text);
     }
 
     @Then("^The user verifies error \"([^\"]*)\" is visible$")
@@ -40,7 +40,6 @@ public class CommonSteps {
         throw new PendingException();
     }
 
-    @When("^The user verifies success message \"([^\"]*)\" is visible$")
     @Then("^The user verifies success message \"([^\"]*)\" is visible$")
     public void theUserVerifiesSuccessMessageIsVisible(String successMessage) {
         throw new PendingException();

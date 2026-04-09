@@ -6,7 +6,7 @@ Feature: Authentication - Register, Login and Logout
     And The user verifies that home page is visible successfully
     And The user clicks on "Signup / Login" button
 
-  @RegisterUser @Candidate @Smoke @E2E
+  @RegisterUser @Candidate @Smoke @E2E @test
   Scenario: Register a new user successfully
     When The user verifies that "New User Signup!" is visible
     And The user enters name and email address

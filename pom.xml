@@ -21,14 +21,14 @@
 		<!-- default configuration chrome local -->
 		<crowdar.projectType></crowdar.projectType>
 		<crowdar.driver.capabilities.json_path></crowdar.driver.capabilities.json_path>
-		<crowdar.setupStrategy></crowdar.setupStrategy>
+		<crowdar.setupStrategy>web.DownloadLatestStrategy</crowdar.setupStrategy>
 		<crowdar.driverHub></crowdar.driverHub>
-		<runner></runner>
+		<runner>testng-sequential.xml</runner>
 
 		<!-- cucumber options -->
 		<cucumber.stepsDefinitions>--glue com.automationexercise.steps</cucumber.stepsDefinitions>
 		<cucumber.hooks>--glue	com/crowdar/bdd/cukes/hooks</cucumber.hooks>
-		<cucumber.tags>@Smoke</cucumber.tags>
+		<cucumber.tags>@test</cucumber.tags>
 		<pretty.plugin>--plugin pretty</pretty.plugin>
 		<crowdar.cucumber.plugins>--plugin pretty --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:</crowdar.cucumber.plugins>
 		<crowdar.extent.host.name>LocalMachine</crowdar.extent.host.name>
@@ -36,10 +36,11 @@
 		<crowdar.extent.user.name>User.name</crowdar.extent.user.name>
 		<cucumber.report>--plugin com.automationexercise.reporters.CucumberReporter:</cucumber.report>
 		<test-manager.report>--plugin com.automationexercise.reporters.TestManagerReporter:</test-manager.report>
-		<crowdar.cucumber.option>src/test/resources/web/features ${cucumber.hooks} ${cucumber.stepsDefinitions} --tags 'not @Ignore' --tags ${cucumber.tags} ${cucumber.report} ${test-manager.report}</crowdar.cucumber.option>
+		<crowdar.cucumber.option>src/test/resources/web/features ${cucumber.hooks} ${cucumber.stepsDefinitions} --tags 'not @Ignore' --tags ${cucumber.tags} ${cucumber.report}</crowdar.cucumber.option>
 
 		<!-- client project custom properties -->
 		<web-app.url>https://automationexercise.com/</web-app.url>
+		<gecko.driver.path>${project.basedir}/geckodriver.exe</gecko.driver.path>
 
 	</properties>
 	<profiles>
@@ -64,6 +65,7 @@
 			<properties>
 				<crowdar.projectType>WEB_FIREFOX</crowdar.projectType>
 				<crowdar.driver.capabilities.json_path>src/main/resources/browsers/firefoxCapabilities.json</crowdar.driver.capabilities.json_path>
+				<crowdar.setupStrategy>web.LocalWebExecutionStrategy</crowdar.setupStrategy>
 			</properties>
 		</profile>
 
@@ -84,9 +86,6 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-			<properties>
-				<crowdar.setupStrategy>web.DownloadLatestStrategy</crowdar.setupStrategy>
-			</properties>
 		</profile>
 
 		<profile>
@@ -158,6 +157,7 @@
 						<suiteXmlFile>${runner}</suiteXmlFile>
 					</suiteXmlFiles>
 					<systemPropertyVariables>
+						<webdriver.gecko.driver>${gecko.driver.path}</webdriver.gecko.driver>
 						<TEST_MANAGER_USERNAME></TEST_MANAGER_USERNAME>
 						<TEST_MANAGER_PASSWORD></TEST_MANAGER_PASSWORD>
 						<TEST_MANAGER_API_HOST></TEST_MANAGER_API_HOST>
