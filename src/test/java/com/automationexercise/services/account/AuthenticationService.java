@@ -35,6 +35,16 @@ public class AuthenticationService {
         ActionManager.setInput(AuthenticationConstants.LOGIN_PASSWORD_INPUT, requiredProperty("login-password"));
     }
 
+    public static void incorrectLogin() {
+        ActionManager.setInput(AuthenticationConstants.LOGIN_EMAIL_INPUT, "incorrect@fakemail.com");
+        ActionManager.setInput(AuthenticationConstants.LOGIN_PASSWORD_INPUT, "nothing123456");
+    }
+
+    public static void incorrectRegisterEmailRegistered() {
+        ActionManager.setInput(AuthenticationConstants.SIGNUP_NAME_INPUT, DEFAULT_NAME);
+        ActionManager.setInput(AuthenticationConstants.SIGNUP_EMAIL_INPUT, requiredProperty("login-email"));
+    }
+
     public static void fillAccountPrimaryDetails() {
         selectGender();
         fillCredentials();

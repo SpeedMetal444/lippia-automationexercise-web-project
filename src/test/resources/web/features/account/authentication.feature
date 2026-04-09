@@ -30,14 +30,14 @@ Feature: Authentication - Register, Login and Logout
     And The user clicks "Login" button
     Then The user verifies that "Logged in as username" is visible
 
-  @LoginIncorrectCredentials @Candidate @test
+  @LoginIncorrectCredentials @Automated
   Scenario: Login fails with incorrect credentials
     When The user verifies that "Login to your account" is visible
     And The user enters incorrect email address and password
     And The user clicks "Login" button
     Then The user verifies error "Your email or password is incorrect!" is visible
 
-  @LogoutUser @Candidate
+  @LogoutUser @Automated
   Scenario: User can logout successfully
     When The user verifies that "Login to your account" is visible
     And The user enters correct email address and password
@@ -46,7 +46,7 @@ Feature: Authentication - Register, Login and Logout
     And The user clicks "Logout" button
     Then The user verifies that user is navigated to login page
 
-  @RegisterExistingEmail @Candidate
+  @RegisterExistingEmail @Automated
   Scenario: Registration fails with existing email
     When The user verifies that "New User Signup!" is visible
     And The user enters name and already registered email address

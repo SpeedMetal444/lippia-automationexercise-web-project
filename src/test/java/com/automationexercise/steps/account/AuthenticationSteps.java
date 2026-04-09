@@ -41,16 +41,16 @@ public class AuthenticationSteps {
 
     @When("^The user enters incorrect email address and password$")
     public void theUserEntersIncorrectEmailAddressAndPassword() {
-        throw new PendingException();
+        AuthenticationService.incorrectLogin();
     }
 
     @Then("^The user verifies that user is navigated to login page$")
     public void theUserVerifiesThatUserIsNavigatedToLoginPage() {
-        throw new PendingException();
+        CommonService.verifyTextVisibility("Login to your account");
     }
 
     @When("^The user enters name and already registered email address$")
     public void theUserEntersNameAndAlreadyRegisteredEmailAddress() {
-        throw new PendingException();
+        AuthenticationService.incorrectRegisterEmailRegistered();
     }
 }

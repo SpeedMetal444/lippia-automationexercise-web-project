@@ -37,7 +37,7 @@ public class CommonSteps {
 
     @Then("^The user verifies error \"([^\"]*)\" is visible$")
     public void theUserVerifiesErrorIsVisible(String errorMessage) {
-        throw new PendingException();
+        CommonService.verifyTextVisibility(errorMessage);;
     }
 
     @Then("^The user verifies success message \"([^\"]*)\" is visible$")
