@@ -3,6 +3,10 @@ package com.automationexercise.services.account;
 import com.automationexercise.constants.account.AuthenticationConstants;
 import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.ActionManager;
+import com.crowdar.driver.DriverManager;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class AuthenticationService {
@@ -66,8 +70,32 @@ public class AuthenticationService {
     }
 
     private static void selectByVisibleText(String locator, String visibleText) {
-        Select dropdown = new Select(ActionManager.getElement(locator));
-        dropdown.selectByVisibleText(visibleText);
+        try {
+            ActionManager.waitVisibility(locator);
+            Select dropdown = new Select(ActionManager.getElement(locator));
+            dropdown.selectByVisibleText(visibleText);
+        } catch (ElementClickInterceptedException e) {
+            setSelectValueWithJs(locator, visibleText);
+        }
+    }
+
+    private static void setSelectValueWithJs(String locator, String visibleText) {
+        WebElement selectElement = ActionManager.getElement(locator);
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriverInstance();
+
+        String script = "const sel = arguments[0];"
+                + "const target = (arguments[1] || '').trim().toLowerCase();"
+                + "for (let i = 0; i < sel.options.length; i++) {"
+                + "  const optionText = (sel.options[i].text || '').trim().toLowerCase();"
+                + "  if (optionText === target) {"
+                + "    sel.selectedIndex = i;"
+                + "    sel.dispatchEvent(new Event('change', { bubbles: true }));"
+                + "    return;"
+                + "  }"
+                + "}"
+                + "throw new Error('Option not found: ' + arguments[1]);";
+
+        js.executeScript(script, selectElement, visibleText);
     }
 
     public static void selectNewsOfferCheckbox(String checkboxText) {
@@ -108,5 +136,9 @@ public class AuthenticationService {
 
     private static String normalize(String value) {
         return value == null ? "" : value.trim().replaceAll("\\s+", " ").toLowerCase();
+    }
+
+    public static String getDefaultName() {
+        return DEFAULT_NAME;
     }
 }

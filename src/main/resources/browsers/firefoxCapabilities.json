@@ -2,12 +2,16 @@
 	"browserName": "firefox",
 	"acceptInsecureCerts": true,
 	"moz:firefoxOptions": {
-		"args": ["--width=1920", "--height=1080"],
 		"prefs": {
 			"browser.download.folderList": 2,
 			"browser.download.manager.showWhenStarting": false,
 			"browser.helperApps.neverAsk.saveToDisk": "application/pdf,application/zip,text/csv,application/octet-stream",
-			"pdfjs.disabled": true
+			"pdfjs.disabled": true,
+			"dom.webnotifications.enabled": false,
+			"privacy.trackingprotection.enabled": true,
+			"media.autoplay.default": 5,
+			"browser.newtabpage.enabled": false,
+			"dom.disable_beforeunload": true
 		}
 	},
 	"platform": "ANY",

@@ -3,15 +3,41 @@ package com.automationexercise.services.common;
 import com.automationexercise.constants.account.AuthenticationConstants;
 import com.automationexercise.constants.common.CommonConstants;
 import com.automationexercise.constants.content.HomeConstants;
+import com.automationexercise.services.account.AuthenticationService;
 import com.crowdar.core.actions.ActionManager;
+import com.crowdar.driver.DriverManager;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CommonService {
+
     public static void verifyTextVisibility(String text) {
-        String locator = String.format(CommonConstants.VISIBLE_TEXT_CONTAINS, text);
+        String resolvedText = resolvePlaceholders(text);
+        String normalized = normalize(resolvedText);
+
+        String locator = String.format(
+                CommonConstants.VISIBLE_TEXT_CONTAINS_IGNORE_CASE,
+                normalized
+        );
+
+        ActionManager.waitVisibility(locator);
         ActionManager.isVisible(locator);
+    }
+
+    private static String resolvePlaceholders(String text) {
+        if (text == null) {
+            return "";
+        }
+
+        if ("Logged in as username".equalsIgnoreCase(text.trim())) {
+            return "Logged in as " + AuthenticationService.getDefaultName();
+        }
+
+        return text;
     }
 
     private static final Map<String, String> BUTTON_LOCATORS = new HashMap<>();
@@ -56,7 +82,24 @@ public class CommonService {
             throw new IllegalArgumentException("Unknown button name: " + buttonName);
         }
 
-        ActionManager.click(locator);
+        ActionManager.waitClickable(locator);
+        try {
+            ActionManager.click(locator);
+        } catch (ElementClickInterceptedException e) {
+            hideAdsIfPresent();
+            clickWithJs(locator);
+        }
+    }
+
+    private static void hideAdsIfPresent() {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriverInstance();
+        js.executeScript("document.querySelectorAll(\"iframe[id^='aswift_'], iframe[id^='google_ads_iframe']\").forEach(e => e.style.display='none');");
+    }
+
+    private static void clickWithJs(String locator) {
+        WebElement element = ActionManager.getElement(locator);
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriverInstance();
+        js.executeScript("arguments[0].click();", element);
     }
 
     private static String normalize(String value) {

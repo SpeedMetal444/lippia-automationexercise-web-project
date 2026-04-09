@@ -41,6 +41,7 @@
 		<!-- client project custom properties -->
 		<web-app.url>https://automationexercise.com/</web-app.url>
 		<gecko.driver.path>${project.basedir}/geckodriver.exe</gecko.driver.path>
+		<gecko.driver.log.path>${project.build.directory}/geckodriver.log</gecko.driver.log.path>
 
 	</properties>
 	<profiles>
@@ -141,6 +142,12 @@
 			<artifactId>extentreports-cucumber4-adapter</artifactId>
 			<version>1.1.0.10</version>
 		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>1.7.30</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<filters>
@@ -158,6 +165,7 @@
 					</suiteXmlFiles>
 					<systemPropertyVariables>
 						<webdriver.gecko.driver>${gecko.driver.path}</webdriver.gecko.driver>
+						<webdriver.firefox.logfile>${gecko.driver.log.path}</webdriver.firefox.logfile>
 						<TEST_MANAGER_USERNAME></TEST_MANAGER_USERNAME>
 						<TEST_MANAGER_PASSWORD></TEST_MANAGER_PASSWORD>
 						<TEST_MANAGER_API_HOST></TEST_MANAGER_API_HOST>
