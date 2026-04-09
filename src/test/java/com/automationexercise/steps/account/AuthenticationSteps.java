@@ -36,7 +36,7 @@ public class AuthenticationSteps {
 
     @When("^The user enters correct email address and password$")
     public void theUserEntersCorrectEmailAddressAndPassword() {
-        throw new PendingException();
+        AuthenticationService.correctLogin();
     }
 
     @When("^The user enters incorrect email address and password$")

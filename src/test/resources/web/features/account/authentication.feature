@@ -23,16 +23,14 @@ Feature: Authentication - Register, Login and Logout
     And The user clicks "Delete Account" button
     Then The user verifies that "ACCOUNT DELETED!" is visible and clicks "Continue" button
 
-  @LoginCorrectCredentials @Candidate @Smoke @test
+  @LoginCorrectCredentials @Automated @Smoke
   Scenario: Login with correct credentials successfully
     When The user verifies that "Login to your account" is visible
     And The user enters correct email address and password
     And The user clicks "Login" button
-    And The user verifies that "Logged in as username" is visible
-    And The user clicks "Delete Account" button
-    Then The user verifies that "ACCOUNT DELETED!" is visible
+    Then The user verifies that "Logged in as username" is visible
 
-  @LoginIncorrectCredentials @Candidate
+  @LoginIncorrectCredentials @Candidate @test
   Scenario: Login fails with incorrect credentials
     When The user verifies that "Login to your account" is visible
     And The user enters incorrect email address and password

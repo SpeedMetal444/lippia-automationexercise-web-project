@@ -27,7 +27,12 @@ public class AuthenticationService {
 
     public static void registerNameEmail() {
         ActionManager.setInput(AuthenticationConstants.SIGNUP_NAME_INPUT, DEFAULT_NAME);
-        ActionManager.setInput(AuthenticationConstants.SIGNUP_EMAIL_INPUT, requiredProperty("signup-login-email"));
+        ActionManager.setInput(AuthenticationConstants.SIGNUP_EMAIL_INPUT, requiredProperty("signup-email"));
+    }
+
+    public static void correctLogin() {
+        ActionManager.setInput(AuthenticationConstants.LOGIN_EMAIL_INPUT, requiredProperty("login-email"));
+        ActionManager.setInput(AuthenticationConstants.LOGIN_PASSWORD_INPUT, requiredProperty("login-password"));
     }
 
     public static void fillAccountPrimaryDetails() {
