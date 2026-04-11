@@ -97,7 +97,7 @@ public class AuthenticationService {
 
     private static void setSelectValueWithJs(String locator, String visibleText) {
         WebElement selectElement = ActionManager.getElement(locator);
-        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriverInstance();
+        JavascriptExecutor js = DriverManager.getDriverInstance();
 
         String script = "const sel = arguments[0];"
                 + "const target = (arguments[1] || '').trim().toLowerCase();"
