@@ -97,7 +97,7 @@ public class AuthenticationService {
 
     private static void setSelectValueWithJs(String locator, String visibleText) {
         WebElement selectElement = ActionManager.getElement(locator);
-        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriverInstance();
+        JavascriptExecutor js = DriverManager.getDriverInstance();
 
         String script = "const sel = arguments[0];"
                 + "const target = (arguments[1] || '').trim().toLowerCase();"
@@ -142,7 +142,7 @@ public class AuthenticationService {
         }
     }
 
-    private static String requiredProperty(String key) {
+    public static String requiredProperty(String key) {
         String value = PropertyManager.getProperty(key);
         if (value == null || value.trim().isEmpty()) {
             throw new IllegalStateException("Missing property value for key: " + key);

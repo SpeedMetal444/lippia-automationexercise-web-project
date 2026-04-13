@@ -1,53 +1,51 @@
 package com.automationexercise.steps.content;
 
+import com.automationexercise.services.common.CommonService;
+import com.automationexercise.services.content.HomeService;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class HomeSteps {
 
-    @When("^The user scrolls down to footer$")
+    @When("^The user scrolls down to the footer$")
     public void theUserScrollsDownToFooter() {
-        throw new PendingException();
+        CommonService.scrollToFooter();
     }
 
     @When("^The user enters email address in input and clicks arrow button$")
     public void theUserEntersEmailAddressInInputAndClicksArrowButton() {
-        throw new PendingException();
+        HomeService.typeSubscribe();
+        CommonService.clickButtonByName("SUBSCRIBE");
     }
 
-    @When("^The user scrolls to bottom of page$")
+    @When("^The user scrolls down to the bottom$")
     public void theUserScrollsToBottomOfPage() {
-        throw new PendingException();
+        CommonService.scrollToBottom();
     }
 
-    @When("^The user clicks on \"Add To Cart\" on Recommended product$")
-    public void theUserClicksOnAddToCartOnRecommendedProduct() {
-        throw new PendingException();
+    @When("^The user clicks \"([^\"]*)\" on Recommended product$")
+    public void theUserClicksOnAddToCartOnRecommendedProduct(String button) {
+        HomeService.addFirstRecommendedProductToCart();
     }
 
     @Then("^The user verifies that product is displayed in cart page$")
     public void theUserVerifiesThatProductIsDisplayedInCartPage() {
-        throw new PendingException();
+        HomeService.verifyRecommendedProductIsDisplayedInCart();
     }
 
-    @When("^The user scrolls down page to bottom$")
-    public void theUserScrollsDownPageToBottom() {
-        throw new PendingException();
-    }
-
-    @When("^The user clicks on arrow at bottom right side to move upward$")
+    @When("^The user clicks on the arrow at bottom right side to move upward$")
     public void theUserClicksOnArrowAtBottomRightSideToMoveUpward() {
-        throw new PendingException();
+        CommonService.clickButtonByName("Scroll upward");
     }
 
     @Then("^The user verifies that page is scrolled up and \"([^\"]*)\" text is visible on screen$")
     public void theUserVerifiesThatPageIsScrolledUpAndTextIsVisibleOnScreen(String expectedText) {
-        throw new PendingException();
+        CommonService.verifyTextVisibility(expectedText);
     }
 
-    @When("^The user scrolls up page to top$")
+    @When("^The user scrolls up to the top$")
     public void theUserScrollsUpPageToTop() {
-        throw new PendingException();
+        CommonService.scrollToTop();
     }
 }

@@ -71,6 +71,8 @@ public class CommonService {
         BUTTON_LOCATORS.put("logout", AuthenticationConstants.LOGOUT_BUTTON);
 
         // Generic flow buttons
+        BUTTON_LOCATORS.put("subscribe", HomeConstants.SUBSCRIBE_BUTTON);
+        BUTTON_LOCATORS.put("scroll upward", CommonConstants.SCROLL_UP_BUTTON);
         BUTTON_LOCATORS.put("view cart", "xpath://a[normalize-space()='View Cart']");
         BUTTON_LOCATORS.put("continue shopping", "xpath://button[normalize-space()='Continue Shopping']");
         BUTTON_LOCATORS.put("add to cart", "xpath:(//a[contains(normalize-space(),'Add to cart')] | //button[contains(normalize-space(),'Add to cart')])[1]");
@@ -100,17 +102,38 @@ public class CommonService {
     }
 
     private static void hideAdsIfPresent() {
-        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriverInstance();
+        JavascriptExecutor js = DriverManager.getDriverInstance();
         js.executeScript("document.querySelectorAll(\"iframe[id^='aswift_'], iframe[id^='google_ads_iframe']\").forEach(e => e.style.display='none');");
     }
 
     private static void clickWithJs(String locator) {
         WebElement element = ActionManager.getElement(locator);
-        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriverInstance();
+        JavascriptExecutor js = DriverManager.getDriverInstance();
         js.executeScript("arguments[0].click();", element);
     }
 
     private static String normalize(String value) {
         return value == null ? "" : value.trim().replaceAll("\\s+", " ").toLowerCase();
+    }
+
+    public static void scrollToFooter() {
+        JavascriptExecutor js = DriverManager.getDriverInstance();
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+    }
+
+    public static void scrollToBottom() {
+        JavascriptExecutor js = DriverManager.getDriverInstance();
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+    }
+
+    public static void scrollToTop() {
+        JavascriptExecutor js = DriverManager.getDriverInstance();
+        js.executeScript("window.scrollTo(0, 0);");
+    }
+
+    public static void scrollIntoView(String locator) {
+        WebElement element = ActionManager.waitVisibility(locator);
+        JavascriptExecutor js = DriverManager.getDriverInstance();
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", element);
     }
 }

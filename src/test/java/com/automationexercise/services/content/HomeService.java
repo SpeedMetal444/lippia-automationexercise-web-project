@@ -4,6 +4,9 @@ import com.automationexercise.constants.content.HomeConstants;
 import com.crowdar.core.actions.ActionManager;
 
 public class HomeService {
+
+    private static String lastRecommendedProductId;
+
     public static void isHomeLoaded() {
         ActionManager.isVisible(HomeConstants.HOME_CAROUSEL);
     }
@@ -40,5 +43,35 @@ public class HomeService {
             default:
                 throw new IllegalArgumentException("Unknown navbar button: " + buttonName);
         }
+    }
+
+    public static void typeSubscribe() {
+        ActionManager.setInput(HomeConstants.SUBSCRIBE_INPUT, "example@email.com");
+    }
+
+    public static void addFirstRecommendedProductToCart() {
+        ActionManager.waitVisibility(HomeConstants.RECOMMENDED_ITEMS_TITLE);
+        ActionManager.waitVisibility(HomeConstants.RECOMMENDED_ACTIVE_FIRST_PRODUCT_NAME);
+
+        lastRecommendedProductId = ActionManager.getAttribute(
+                HomeConstants.RECOMMENDED_ACTIVE_FIRST_ADD_TO_CART,
+                "data-product-id"
+        );
+
+        if (lastRecommendedProductId == null || lastRecommendedProductId.trim().isEmpty()) {
+            throw new IllegalStateException("Could not capture recommended product id before adding to cart");
+        }
+
+        ActionManager.waitClickable(HomeConstants.RECOMMENDED_ACTIVE_FIRST_ADD_TO_CART);
+        ActionManager.click(HomeConstants.RECOMMENDED_ACTIVE_FIRST_ADD_TO_CART);
+    }
+
+    public static void verifyRecommendedProductIsDisplayedInCart() {
+        if (lastRecommendedProductId == null || lastRecommendedProductId.trim().isEmpty()) {
+            throw new IllegalStateException("No recommended product id captured to validate in cart");
+        }
+
+        String cartRowLocator = String.format(HomeConstants.CART_ROW_BY_PRODUCT_ID, lastRecommendedProductId.trim());
+        ActionManager.waitVisibility(cartRowLocator);
     }
 }

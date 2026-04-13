@@ -8,7 +8,7 @@ Feature: Cart - Add, Remove, Persist and Subscribe
   @SubscriptionCartPage @Candidate
   Scenario: User can subscribe to newsletter from cart page
     When The user clicks "Cart" button
-    And The user scrolls down to footer
+    And The user scrolls down to the footer
     And The user verifies text "SUBSCRIPTION"
     And The user enters email address in input and clicks arrow button
     Then The user verifies success message "You have been successfully subscribed!" is visible
