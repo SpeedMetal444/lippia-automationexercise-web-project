@@ -25,7 +25,7 @@ public class HomeSteps {
     }
 
     @When("^The user clicks \"([^\"]*)\" on Recommended product$")
-    public void theUserClicksOnAddToCartOnRecommendedProduct(String button) {
+    public void theUserClicksOnAddToCartOnRecommendedProduct() {
         HomeService.addFirstRecommendedProductToCart();
     }
 
