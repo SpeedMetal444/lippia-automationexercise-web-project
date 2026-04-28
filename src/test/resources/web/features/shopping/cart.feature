@@ -13,7 +13,7 @@ Feature: Cart - Add, Remove, Persist and Subscribe
     And The user enters email address in input and clicks arrow button
     Then The user verifies success message "You have been successfully subscribed!" is visible
 
-  @AddProductsToCart @Candidate @Smoke @test
+  @AddProductsToCart @Automated @Smoke
   Scenario: User can add multiple products to cart
     When The user clicks on "Products" button
     And The user hovers over first product and clicks "Add to cart"
@@ -23,7 +23,7 @@ Feature: Cart - Add, Remove, Persist and Subscribe
     Then The user verifies that both products are added to Cart
     And The user verifies their prices, quantity and total price
 
-  @VerifyProductQuantityCart @Candidate
+  @VerifyProductQuantityCart @Candidate @test
   Scenario: User can add product with specific quantity to cart
     When The user clicks "View Product" for any product on home page
     And The user verifies that product detail is opened

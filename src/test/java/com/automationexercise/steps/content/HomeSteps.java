@@ -2,7 +2,7 @@ package com.automationexercise.steps.content;
 
 import com.automationexercise.services.common.CommonService;
 import com.automationexercise.services.content.HomeService;
-import cucumber.api.PendingException;
+import com.automationexercise.services.shopping.CartService;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -26,12 +26,12 @@ public class HomeSteps {
 
     @When("^The user clicks \"Add to cart\" on Recommended product$")
     public void theUserClicksOnAddToCartOnRecommendedProduct() {
-        HomeService.addFirstRecommendedProductToCart();
+        CartService.addFirstRecommendedProductToCart();
     }
 
     @Then("^The user verifies that product is displayed in cart page$")
     public void theUserVerifiesThatProductIsDisplayedInCartPage() {
-        HomeService.verifyRecommendedProductIsDisplayedInCart();
+        CartService.verifyRecommendedProductIsDisplayedInCart();
     }
 
     @When("^The user clicks on the arrow at bottom right side to move upward$")
