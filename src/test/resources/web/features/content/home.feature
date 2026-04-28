@@ -16,7 +16,7 @@ Feature: Home - Subscription, Recommended Items and Scroll
   Scenario: User can add recommended items to cart
     When The user scrolls down to the bottom
     And The user verifies "RECOMMENDED ITEMS" are visible
-    And The user clicks "Add To Cart" on Recommended product
+    And The user clicks "Add to cart" on Recommended product
     And The user clicks "View Cart" button
     Then The user verifies that product is displayed in cart page
 

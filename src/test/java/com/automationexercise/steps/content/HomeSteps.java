@@ -24,7 +24,7 @@ public class HomeSteps {
         CommonService.scrollToBottom();
     }
 
-    @When("^The user clicks \"([^\"]*)\" on Recommended product$")
+    @When("^The user clicks \"Add to cart\" on Recommended product$")
     public void theUserClicksOnAddToCartOnRecommendedProduct() {
         HomeService.addFirstRecommendedProductToCart();
     }
