@@ -1,18 +1,20 @@
-name: Manual Ejecution
+name: PR Automated Tests
+
 on:
-  workflow_dispatch:    
-    inputs:
-      tag:        
-        description: 'Tag'        
-        default: '@Smoke'        
-        required: true
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
 
 concurrency:
-  group: manual-tests-${{ github.ref }}
+  group: pr-automated-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
-  testing:
+  automated-tests:
+    if: ${{ !github.event.pull_request.draft }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
@@ -25,16 +27,16 @@ jobs:
           docker --version
           docker compose version
 
-      - name: Execute tagged suite
+      - name: Run @Automated suite
         env:
-          CUSTOM_COMMAND: mvn clean test -Plocal,chromeHeadless,sequential -Dcucumber.tags=${{ github.event.inputs.tag }}
+          CUSTOM_COMMAND: mvn clean test -Plocal,chromeHeadless,sequential -Dcucumber.tags=@Automated
         run: docker compose -f local-docker-compose.yml up --abort-on-container-exit --exit-code-from lippia
 
       - name: Upload reports
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: reports-manual-${{ github.run_number }}
+          name: reports-pr-${{ github.event.pull_request.number }}
           path: |
             target/reports/
             target/surefire-reports/
