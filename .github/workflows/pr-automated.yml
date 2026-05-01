@@ -17,20 +17,33 @@ jobs:
     if: ${{ !github.event.pull_request.draft }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Show Docker versions
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '15'
+          cache: maven
+
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Show runtime versions
         run: |
-          docker --version
-          docker compose version
+          java -version
+          mvn -version
+          chrome --version
 
       - name: Run @Automated suite
-        env:
-          CUSTOM_COMMAND: mvn clean test -Plocal,chromeHeadless,sequential -Dcucumber.tags=@Automated
-        run: docker compose -f local-docker-compose.yml up --abort-on-container-exit --exit-code-from lippia
+        run: mvn -B clean test -Plocal,chromeHeadless,sequential -Dcucumber.tags=@Automated
 
       - name: Upload reports
         if: ${{ always() }}
@@ -41,7 +54,3 @@ jobs:
             target/reports/
             target/surefire-reports/
           if-no-files-found: warn
-
-      - name: Tear down containers
-        if: ${{ always() }}
-        run: docker compose -f local-docker-compose.yml down --volumes --remove-orphans
