@@ -23,7 +23,7 @@ Feature: Cart - Add, Remove, Persist and Subscribe
     Then The user verifies that both products are added to Cart
     And The user verifies their prices, quantity and total price
 
-  @VerifyProductQuantityCart @Candidate @test
+  @VerifyProductQuantityCart @Candidate
   Scenario: User can add product with specific quantity to cart
     When The user clicks "View Product" for any product on home page
     And The user verifies that product detail is opened

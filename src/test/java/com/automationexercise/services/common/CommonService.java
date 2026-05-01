@@ -42,7 +42,7 @@ public class CommonService {
         }
 
         if ("Logged in as username".equalsIgnoreCase(text.trim())) {
-            return "Logged in as " + AuthenticationService.getDefaultName();
+            return "Logged in as";
         }
 
         return text;
@@ -73,7 +73,10 @@ public class CommonService {
         // Generic flow buttons
         BUTTON_LOCATORS.put("subscribe", HomeConstants.SUBSCRIBE_BUTTON);
         BUTTON_LOCATORS.put("scroll upward", CommonConstants.SCROLL_UP_BUTTON);
-        BUTTON_LOCATORS.put("view cart", "xpath://a[normalize-space()='View Cart']");
+        BUTTON_LOCATORS.put(
+                "view cart",
+                "xpath:(//div[contains(@class,'modal')]//a[@href='/view_cart' and (normalize-space()='View Cart' or .//u[normalize-space()='View Cart'])] | //a[@href='/view_cart' and (normalize-space()='View Cart' or .//u[normalize-space()='View Cart'])])[1]"
+        );
         BUTTON_LOCATORS.put("continue shopping", "xpath://button[normalize-space()='Continue Shopping']");
         BUTTON_LOCATORS.put("add to cart", "xpath:(//a[contains(normalize-space(),'Add to cart')] | //button[contains(normalize-space(),'Add to cart')])[1]");
         BUTTON_LOCATORS.put("x", "css:.cart_quantity_delete");
