@@ -15,8 +15,14 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    environment: qa
     permissions:
       contents: read
+    env:
+      AENEWEMAIL: ${{ secrets.AENEWEMAIL }}
+      AEEMAIL: ${{ secrets.AEEMAIL }}
+      AEPASSWORD: ${{ secrets.AEPASSWORD }}
+      AEMOBILENUMBER: ${{ secrets.AEMOBILENUMBER }}
 
     steps:
       - name: Checkout repository
