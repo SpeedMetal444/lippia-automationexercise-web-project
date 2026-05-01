@@ -32,6 +32,7 @@ public class CommonService {
                 normalized
         );
 
+        hideAdsIfPresent();
         ActionManager.waitVisibility(locator);
         ActionManager.isVisible(locator);
     }
@@ -106,7 +107,10 @@ public class CommonService {
 
     private static void hideAdsIfPresent() {
         JavascriptExecutor js = DriverManager.getDriverInstance();
-        js.executeScript("document.querySelectorAll(\"iframe[id^='aswift_'], iframe[id^='google_ads_iframe']\").forEach(e => e.style.display='none');");
+        js.executeScript(
+                "document.querySelectorAll(\"iframe[id^='aswift_'], iframe[id^='google_ads_iframe'], .adsbygoogle, .ad, .ads, [id*='google_ads'], [class*='google-ad']\")"
+                        + ".forEach(e => e.style.display='none');"
+        );
     }
 
     private static void clickWithJs(String locator) {
