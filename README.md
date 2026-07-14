@@ -1,6 +1,6 @@
 # AutomationExercise Web Automation
 
-This project contains web UI automated tests for [AutomationExercise](https://automationexercise.com/) using Lippia, Cucumber, TestNG, and Selenium.
+This project contains web UI automated tests for [AutomationExercise](https://automationexercise.com/) using Lippia, Cucumber, TestNG, and Selenium. Features BDD scenarios organized by functional domain with a domain-driven architecture (constants, services, steps per domain).
 
 ## Tech Stack
 
