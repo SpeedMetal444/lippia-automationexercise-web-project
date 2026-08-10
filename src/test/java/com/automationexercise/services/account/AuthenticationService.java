@@ -142,7 +142,7 @@ public class AuthenticationService {
         }
     }
 
-    private static String requiredProperty(String key) {
+    public static String requiredProperty(String key) {
         String value = PropertyManager.getProperty(key);
         if (value == null || value.trim().isEmpty()) {
             throw new IllegalStateException("Missing property value for key: " + key);

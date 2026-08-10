@@ -5,15 +5,15 @@ Feature: Cart - Add, Remove, Persist and Subscribe
     Given The user navigates to url "http://automationexercise.com"
     And The user verifies that home page is visible successfully
 
-  @SubscriptionCartPage @Candidate
+  @SubscriptionCartPage @Automated
   Scenario: User can subscribe to newsletter from cart page
     When The user clicks "Cart" button
-    And The user scrolls down to footer
+    And The user scrolls down to the footer
     And The user verifies text "SUBSCRIPTION"
     And The user enters email address in input and clicks arrow button
     Then The user verifies success message "You have been successfully subscribed!" is visible
 
-  @AddProductsToCart @Candidate @Smoke
+  @AddProductsToCart @Automated @Smoke
   Scenario: User can add multiple products to cart
     When The user clicks on "Products" button
     And The user hovers over first product and clicks "Add to cart"

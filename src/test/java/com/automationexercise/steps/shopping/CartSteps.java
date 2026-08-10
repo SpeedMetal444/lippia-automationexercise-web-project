@@ -1,5 +1,6 @@
 package com.automationexercise.steps.shopping;
 
+import com.automationexercise.services.shopping.CartService;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -8,22 +9,22 @@ public class CartSteps {
 
     @When("^The user hovers over first product and clicks \"Add to cart\"$")
     public void theUserHoversOverFirstProductAndClicksAddToCart() {
-        throw new PendingException();
+        CartService.addFirstProduct();
     }
 
     @When("^The user hovers over second product and clicks \"Add to cart\"$")
     public void theUserHoversOverSecondProductAndClicksAddToCart() {
-        throw new PendingException();
+        CartService.addSecondProduct();
     }
 
     @Then("^The user verifies that both products are added to Cart$")
     public void theUserVerifiesThatBothProductsAreAddedToCart() {
-        throw new PendingException();
+        CartService.verifyAddedProductsInCart();
     }
 
     @Then("^The user verifies their prices, quantity and total price$")
     public void theUserVerifiesTheirPricesQuantityAndTotalPrice() {
-        throw new PendingException();
+        CartService.verifyProductsDetailsInCart();
     }
 
     @When("^The user clicks \"View Product\" for any product on home page$")

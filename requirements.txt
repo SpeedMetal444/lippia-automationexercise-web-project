@@ -1,0 +1,4 @@
+lippia-core==3.3.0.3
+ltm-cucumber4-adapter==1.4
+extentreports-cucumber4-adapter==1.1.0.10
+slf4j-nop==1.7.30

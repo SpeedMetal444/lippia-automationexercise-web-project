@@ -4,6 +4,7 @@ import com.automationexercise.constants.content.HomeConstants;
 import com.crowdar.core.actions.ActionManager;
 
 public class HomeService {
+
     public static void isHomeLoaded() {
         ActionManager.isVisible(HomeConstants.HOME_CAROUSEL);
     }
@@ -40,5 +41,9 @@ public class HomeService {
             default:
                 throw new IllegalArgumentException("Unknown navbar button: " + buttonName);
         }
+    }
+
+    public static void typeSubscribe() {
+        ActionManager.setInput(HomeConstants.SUBSCRIBE_INPUT, "example@email.com");
     }
 }

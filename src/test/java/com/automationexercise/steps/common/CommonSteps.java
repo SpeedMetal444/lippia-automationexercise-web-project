@@ -42,22 +42,22 @@ public class CommonSteps {
 
     @Then("^The user verifies success message \"([^\"]*)\" is visible$")
     public void theUserVerifiesSuccessMessageIsVisible(String successMessage) {
-        throw new PendingException();
+        CommonService.verifyTextVisibility(successMessage);
     }
 
     @When("^The user verifies text \"([^\"]*)\"$")
     public void theUserVerifiesText(String text) {
-        throw new PendingException();
+        CommonService.verifyTextVisibility(text);
     }
 
     @When("^The user verifies \"([^\"]*)\" is visible$")
     public void theUserVerifiesIsVisible(String text) {
-        throw new PendingException();
+        CommonService.verifyTextVisibility(text);
     }
 
     @When("^The user verifies \"([^\"]*)\" are visible$")
     public void theUserVerifiesAreVisible(String text) {
-        throw new PendingException();
+        CommonService.verifyTextVisibility(text);
     }
 
     @When("^The user adds products to cart$")
